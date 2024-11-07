@@ -1,0 +1,18 @@
+create database library;
+create table books
+(
+BookId int identity(1,1) primary key,
+BokTitle varchar(max),
+Auther varchar(max),
+Quantity int
+);
+
+create table Borrow
+(
+CustomerId int identity(1,1) primary key,
+CustomerName varchar(max),
+BookId int foreign key 
+references Books(BookId),
+BorrowDate date,
+ReturnDate date
+);
