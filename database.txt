@@ -1,18 +1,30 @@
-create database library;
+drop table if exists books;
+drop table if exists borrow;
+
 create table books
 (
-BookId int identity(1,1) primary key,
-BokTitle varchar(max),
-Auther varchar(max),
-Quantity int
+	BookId int identity primary key,
+	BookTitle varchar(max),
+	Author varchar(max),
+	Quantity int
 );
 
-create table Borrow
+create table borrow
 (
-CustomerId int identity(1,1) primary key,
-CustomerName varchar(max),
-BookId int foreign key 
-references Books(BookId),
-BorrowDate date,
-ReturnDate date
+	CustomerId int identity primary key,
+	CustomerName varchar(max),
+	BookId int, 
+	foreign key (BookId) references books(BookId),
+	BorrowDate date,
+	ReturnDate date
 );
+
+insert into books(BookTitle, Author, Quantity) 
+values 
+('Learn Programming whith C#', 'Ahmed Sherif', 100);
+
+insert into borrow(CustomerName, BorrowDate, ReturnDate)
+values ('Omar Youssef', '1/1/2024', '10/10/2024');
+
+select * from books;
+select * from borrow;
